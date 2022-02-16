@@ -1,0 +1,69 @@
+<%= render "shared/header" %>
+
+<div class="wrapper">
+  <div class="side-bar">
+    <div class="item">
+      <%= link_to "ミルク", '#', class: "item-name" %>
+    </div>
+    <div class="item">
+      <%= link_to "睡眠", '#', class: "item-name" %>
+    </div>
+    <div class="item">
+      <%= link_to "排泄", '#', class: "item-name" %>
+    </div>
+    <div class="item">
+      <%= link_to "体温", '#', class: "item-name" %>
+    </div>
+    <div class="item">
+      <%= link_to "育児日記", '#', class: "item-name" %>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="main-area">
+      <div class="main-top">
+        <div class="form-date">
+          カレンダーフォーム実装予定
+        </div>
+        <div class="item-icon">
+          <div class="icon">
+            <%= link_to "ミルク", '#', class: "icon-name" %>
+          </div>
+          <div class="icon">
+            <%= link_to "寝る", '#', class: "icon-name" %>
+          </div>
+          <div class="icon">
+            <%= link_to "起きる", '#', class: "icon-name" %>
+          </div>
+          <div class="icon">
+            <%= link_to "おしっこ", '#', class: "icon-name" %>
+          </div>
+          <div class="icon">
+            <%= link_to "うんち", '#', class: "icon-name" %>
+          </div>
+        </div>
+      </div>
+      <div class="main-middle">
+        <div class="main-middle-left">
+          イベント簡易表示
+        </div>
+        <div class="main-middle-center">
+          イベント一覧
+        </div>
+        <div class="main-middle-right">
+          投稿写真一覧
+        </div>
+      </div>
+    </div>
+    <div class="comment-area">
+      <div class="comment-input">
+        <input class="form-comment" placeholder= "育児日記">
+        <label class="form-image">
+          <span class="image-file">写真</span>
+          <input type="file" class="hidden">
+        </label>
+      </div>
+      <input class="form-submit" type="submit" value="完了">
+    </div>
+  </div>
+</div>
