@@ -4,4 +4,7 @@ class Parent < ActiveHash::Base
     { id: 2, name: 'ママ' },
     { id: 3, name: 'パパ' },
   ]
+
+  include ActiveHash::Associations
+  has_many :user
   end
