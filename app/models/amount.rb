@@ -9,4 +9,5 @@ class Amount < ActiveHash::Base
 
   include ActiveHash::Associations
   has_many :pees
+  has_many :poops
   end
