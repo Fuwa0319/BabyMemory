@@ -1,4 +1,4 @@
-# BABYMEMORY
+# BABY MEMORY
 
 ## users テーブル
 
@@ -95,7 +95,7 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| pee_list_id        | integer    | null: false                    |
+| amount_id          | integer    | null: false                    |
 | memo               | string     |                                |
 | user               | references | null: false, foreign_key: true |
 | memory             | references | null: false, foreign_key: true |
@@ -103,13 +103,14 @@
 ### Association
 - belongs_to    :user
 - belongs_to    :memory
-- belongs_to    :pee_list
+- belongs_to    :amount
 
 ## poops テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| poop_list_id       | integer    | null: false                    |
+| amount_id          | integer    | null: false                    |
+| hardness_id        | integer    | null: false                    |
 | memo               | string     |                                |
 | user               | references | null: false, foreign_key: true |
 | memory             | references | null: false, foreign_key: true |
@@ -117,4 +118,5 @@
 ### Association
 - belongs_to    :user
 - belongs_to    :memory
-- belongs_to    :poop_list
+- belongs_to    :amount
+- belongs_to    :hardness

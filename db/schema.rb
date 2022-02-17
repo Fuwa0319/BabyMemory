@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_17_062207) do
+ActiveRecord::Schema.define(version: 2022_02_17_074546) do
 
   create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "comment"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 2022_02_17_062207) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["memory_id"], name: "index_milks_on_memory_id"
     t.index ["user_id"], name: "index_milks_on_user_id"
+  end
+
+  create_table "pees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "amount_id", null: false
+    t.string "memo"
+    t.bigint "user_id", null: false
+    t.bigint "memory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["memory_id"], name: "index_pees_on_memory_id"
+    t.index ["user_id"], name: "index_pees_on_user_id"
   end
 
   create_table "temperatures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -63,6 +74,8 @@ ActiveRecord::Schema.define(version: 2022_02_17_062207) do
   add_foreign_key "memories", "users"
   add_foreign_key "milks", "memories"
   add_foreign_key "milks", "users"
+  add_foreign_key "pees", "memories"
+  add_foreign_key "pees", "users"
   add_foreign_key "temperatures", "memories"
   add_foreign_key "temperatures", "users"
 end
