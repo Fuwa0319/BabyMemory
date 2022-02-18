@@ -18,6 +18,41 @@
       <%= link_to "育児日記", '#', class: "item-name" %>
     </div>
   </div>
+<script>
+$('button').click(function() {
+  let id_name = $(this).attr('id');
+  console.log(id_name)
+});
+$(function(){
+  // 画面表示時にダイアログが表示されないよう設定
+  $("#mydialog").dialog({ 
+    autoOpen: false,
+    modal: true,
+    open:function(event, ui){ $(".ui-dialog-titlebar-close").hide();},
+    buttons: [        // ボタン名 : 処理 を設定
+      {
+        text: 'ボタン1',
+        click: function(){
+          $(this).dialog("close");
+        }
+      },
+      {
+        text: 'キャンセル',
+        click: function(){
+          // ダイアログを閉じる
+          $(this).dialog("close");
+        }
+      }
+    ]
+    });
+ 
+  // ボタンのクリックイベント
+  $("#btn_action").click(function(){
+  // ダイアログを表示する
+  $("#mydialog").dialog("open");
+  });
+})
+</script>
 
   <div class="main">
     <div class="main-area">
@@ -27,7 +62,9 @@
         </div>
         <div class="item-icon">
           <div class="icon">
-            <%= link_to "ミルク", '#', class: "icon-name" %>
+            <%#= link_to "ミルク", '#', class: "icon-name" %>
+            <button id="btn_action">ミルク</button>
+            <div id="mydialog" title="サンプルタイトル">テスト</div>
           </div>
           <div class="icon">
             <%= link_to "寝る", '#', class: "icon-name" %>
