@@ -1,11 +1,11 @@
 <script>
 $(function(){
   // 画面表示時にダイアログが表示されないよう設定
-  $("#mydialog_pee").dialog({ 
-    title: 'おしっこ',
+  $("#mydialog_poop").dialog({ 
+    title: 'うんち',
     autoOpen: false,
     modal: true,
-    height: 400,
+    height: 500,
     width: 500,
     open:function(event, ui){ $(".ui-dialog-titlebar-close").hide();},
     buttons: [        // ボタン名 : 処理 を設定
@@ -13,8 +13,14 @@ $(function(){
         text: 'OK',
         class:"wkBtnOk",
         click: function(){
-            if ($("select[name='amount_id']").val() == '1') {
-              alert('おしっこの量を選択してください');
+            if ($("select[name='amount_id']").val() == '1' && $("select[name='hardness_id']").val() == '1') {
+              alert('うんちの量と固さを選択してください');
+              return false;
+            } else if ($("select[name='amount_id']").val() == '1') {
+              alert('うんちの量を選択してください');
+              return false;
+            } else if ($("select[name='hardness_id']").val() == '1') {
+              alert('うんちの硬さを選択してください');
               return false;
             } else {
               $("#data-form").submit();
@@ -33,7 +39,7 @@ $(function(){
   });
  
   // ボタンのクリックイベント
-  $("#btn_action4").click(function(){
+  $("#btn_action5").click(function(){
   // ダイアログを表示する
     var d = new Date();
     var yyyy = d.getFullYear();
@@ -44,13 +50,14 @@ $(function(){
     var today= yyyy + '-' + MM + '-' + dd + 'T' + hh + ':' + mm;
     $("input[name='worked_at']").val(today);
     $("select[name='amount_id']").val(1);
+    $("select[name='hardness_id']").val(1);
     $("textarea[name='memo']").val("");
-    $("#mydialog_pee").dialog("open");
+    $("#mydialog_poop").dialog("open");
   });
 })
 </script>
 
-<div class="dialog" id="mydialog_pee">
+<div class="dialog" id="mydialog_poop">
   <%= form_with url: memories_path, class: 'data-form', id: 'data-form', local: true do |f| %>
     <div class="data-wrap">
       <div class="data-group">
@@ -65,11 +72,20 @@ $(function(){
       <div class="data-group">
         <div class="data-text-wrap">
           <div class="data-text-title">
-            <%= f.label :amount_id, "おしっこの量" %>
+            <%= f.label :amount_id, "うんちの量" %>
             <span class="indispensable">必須</span>
           </div>
         </div>
-        <%= f.collection_select(:amount_id, Amount.all, :id, :name, {}, {class:"data-select-box", id:"pee"}) %>
+        <%= f.collection_select(:amount_id, Amount.all, :id, :name, {}, {class:"data-select-box", id:"poop"}) %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :hardness_id, "うんちの固さ" %>
+            <span class="indispensable">必須</span>
+          </div>
+        </div>
+        <%= f.collection_select(:hardness_id, Hardness.all, :id, :name, {}, {class:"data-select-box", id:"poop_hardness"}) %>
       </div>
       <div class="data-group">
         <div class="data-text-wrap">
