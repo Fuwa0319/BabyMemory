@@ -2,23 +2,28 @@
 $(function(){
   // 画面表示時にダイアログが表示されないよう設定
   $("#mydialog_pee").dialog({ 
+    title: 'おしっこ',
     autoOpen: false,
     modal: true,
     height: 400,
     width: 500,
-    open        : function(event, ui){
-        $('.ui-dialog-titlebar').removeClass('ui-widget-header');
-        $(".ui-dialog-titlebar-close").hide();
-    },
+    open:function(event, ui){ $(".ui-dialog-titlebar-close").hide();},
     buttons: [        // ボタン名 : 処理 を設定
       {
-        text: 'ボタン1',
+        text: 'OK',
+        class:"wkBtnOk",
         click: function(){
-          alert("ボタン1をクリックしました");
+            if ($("select[name='pee_list_id']").val() == '1') {
+              alert('おしっこの量を選択してください');
+              return false;
+            } else {
+              $("#data-form").submit();
+            }
         }
       },
       {
         text: 'CANCEL',
+        class:"wkBtnNg",
         click: function(){
           // ダイアログを閉じる
           $(this).dialog("close");
@@ -30,27 +35,51 @@ $(function(){
   // ボタンのクリックイベント
   $("#btn_action4").click(function(){
   // ダイアログを表示する
-  $("#mydialog_pee").dialog("open");
+    var d = new Date();
+    var yyyy = d.getFullYear();
+    var MM = ('0' + (d.getMonth() + 1)).slice(-2);
+    var dd = ('0' + d.getDate()).slice(-2);
+    var hh = ('0' + d.getHours()).slice(-2);
+    var mm = ('0' + d.getMinutes()).slice(-2);
+    var today= yyyy + '-' + MM + '-' + dd + 'T' + hh + ':' + mm;
+    $("input[name='worked_at']").val(today);
+    $("select[name='amount_id']").val(1);
+    $("textarea[name='memo']").val("");
+    $("#mydialog_pee").dialog("open");
   });
 })
 </script>
 
 <div class="dialog" id="mydialog_pee">
-  <%= form_with url: memories_path, local: true do |f| %>
-    <div>
-      <%= f.label :worked_at, "イベント時間" %>
-      <%= f.datetime_field :worked_at, class: 'date-select' %>
-    </div>
-    <div>
-      <%= f.label :milk_list_id, "おしっこの量" %>
-      <%= f.collection_select(:amount_id, Amount.all, :id, :name, {}, {class:"select-box", id:"amount"}) %>
-    </div>
-    <div>
-      <%= f.label :memo %>
-      <%= f.text_field :memo %>
-    </div>
-    <div>
-      <%= f.submit "OK" %>
+  <%= form_with url: memories_path, class: 'data-form', id: 'data-form', local: true do |f| %>
+    <div class="data-wrap">
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :worked_at, "イベント時間"%>
+            <span class="indispensable">必須</span>
+          </div>
+        </div>
+        <%= f.datetime_field :worked_at, class: 'date-select' %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :amount_id, "おしっこの量" %>
+            <span class="indispensable">必須</span>
+          </div>
+        </div>
+        <%= f.collection_select(:amount_id, Amount.all, :id, :name, {}, {class:"data-select-box", id:"pee"}) %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :memo %>
+            <span class="data-any">任意</span>
+          </div>
+        </div>
+        <%= f.text_area :memo, class: 'data-memo' %>
+      </div>
     </div>
   <% end %>
 </div>
