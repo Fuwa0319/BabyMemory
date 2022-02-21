@@ -17,7 +17,7 @@ class MemoriesController < ApplicationController
   end
 
   def milk_params
-    params.permit(:milk_list_id, :memo).merge(user_id: current_user.id, memory_id: @memory.id)
+    params.permit(:milk_list_id, :memo, :milk_image).merge(user_id: current_user.id, memory_id: @memory.id)
   end
 
 end

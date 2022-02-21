@@ -5,7 +5,7 @@ $(function(){
     title: 'ミルク',
     autoOpen: false,
     modal: true,
-    height: 400,
+    height: 450,
     width: 500,
     open:function(event, ui){ $(".ui-dialog-titlebar-close").hide();},
     buttons: [        // ボタン名 : 処理 を設定
@@ -79,6 +79,15 @@ $(function(){
           </div>
         </div>
         <%= f.text_area :memo, class: 'data-memo' %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <div class="image-text">写真</div>
+            <span class="data-any">任意</span>
+            <%= f.file_field :milk_image, class: "image-form", id: "milk-image" %>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>

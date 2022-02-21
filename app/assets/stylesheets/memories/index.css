@@ -181,6 +181,14 @@ img:hover {
   width: 100px;
 }
 
+.image-text {
+  width: 40px;
+}
+
+.image-form {
+  margin-left: 10px;
+}
+
 .form-submit {
   background-color: #38AEF0;
   border: none;
@@ -220,6 +228,8 @@ img:hover {
   font-size: 12px;
   padding: 2px 4px;
   margin-left: 8px;
+  width: 37px;
+  text-align: center;
 }
 
 .register-submit {
