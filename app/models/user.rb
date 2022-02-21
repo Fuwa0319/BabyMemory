@@ -9,6 +9,7 @@ class User < ApplicationRecord
   belongs_to :gender
   has_many   :memories
   has_many   :temperatures
+  has_many   :milks
   has_many   :pees
   has_many   :poops
 

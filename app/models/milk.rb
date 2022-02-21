@@ -4,7 +4,7 @@ class Milk < ApplicationRecord
   belongs_to :user
   belongs_to :memory
 
-  validates :memo, length: { maxmum: 255 }
+  validates :memo, length: { maximum: 255 }
   validates :milk_list_id,     numericality: { other_than: 1, message: "can't be blank" }
 
 end

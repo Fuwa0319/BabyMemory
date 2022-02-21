@@ -1,0 +1,85 @@
+<script>
+$(function(){
+  // 画面表示時にダイアログが表示されないよう設定
+  $("#mydialog_milk").dialog({ 
+    title: 'ミルク',
+    autoOpen: false,
+    modal: true,
+    height: 400,
+    width: 500,
+    open:function(event, ui){ $(".ui-dialog-titlebar-close").hide();},
+    buttons: [        // ボタン名 : 処理 を設定
+      {
+        text: 'OK',
+        class:"wkBtnOk",
+        click: function(){
+            if ($("select[name='milk_list_id']").val() == '1') {
+              alert('ミルクの量を入力してください');
+              return false;
+            } else {
+              $("#data-form").submit();
+            }
+        }
+      },
+      {
+        text: 'CANCEL',
+        class:"wkBtnNg",
+        click: function(){
+          // ダイアログを閉じる
+          $(this).dialog("close");
+        }
+      }
+    ]
+  });
+ 
+  // ボタンのクリックイベント
+  $("#btn_action1").click(function(){
+  // ダイアログを表示する
+    var d = new Date();
+    var yyyy = d.getFullYear();
+    var MM = ('0' + (d.getMonth() + 1)).slice(-2);
+    var dd = ('0' + d.getDate()).slice(-2);
+    var hh = ('0' + d.getHours()).slice(-2);
+    var mm = ('0' + d.getMinutes()).slice(-2);
+    var today= yyyy + '-' + MM + '-' + dd + 'T' + hh + ':' + mm;
+    $("input[name='worked_at']").val(today);
+    $("select[name='milk_list_id']").val(1);
+    $("textarea[name='memo']").val("");
+    $("#mydialog_milk").dialog("open");
+  });
+})
+</script>
+
+<div class="dialog" id="mydialog_milk">
+  <%= form_with url: memories_path, class: 'data-form', id: 'data-form', local: true do |f| %>
+    <div class="data-wrap">
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :worked_at, "イベント時間"%>
+            <span class="indispensable">必須</span>
+          </div>
+        </div>
+        <%= f.datetime_field :worked_at, class: 'date-select' %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :milk_list_id, "ミルクの量" %>
+            <span class="indispensable">必須</span>
+          </div>
+        </div>
+        <%= f.collection_select(:milk_list_id, MilkList.all, :id, :name, {}, {class:"data-select-box", id:"milk"}) %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :memo %>
+            <span class="data-any">任意</span>
+          </div>
+        </div>
+        <%= f.text_area :memo, class: 'data-memo' %>
+      </div>
+    </div>
+  <% end %>
+</div>
