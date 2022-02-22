@@ -13,14 +13,14 @@ $(function(){
         text: 'OK',
         class:"wkBtnOk",
         click: function(){
-            if ($("select[id='poop']").val() == '1' && $("select[name='hardness_id']").val() == '1') {
-              alert('うんちの量と固さを選択してください');
+            if ($("select[id='poop']").val() == '1' && $("select[name='memory_poop[hardness_id]']").val() == '1') {
+              alert('うんちの量・固さを選択してください');
               return false;
             } else if ($("select[id='poop']").val() == '1') {
               alert('うんちの量を選択してください');
               return false;
-            } else if ($("select[name='hardness_id']").val() == '1') {
-              alert('うんちの硬さを選択してください');
+            } else if ($("select[name='memory_poop[hardness_id]']").val() == '1') {
+              alert('うんちの固さを選択してください');
               return false;
             } else {
               $("#data-form-poop").submit();
@@ -48,17 +48,18 @@ $(function(){
     var hh = ('0' + d.getHours()).slice(-2);
     var mm = ('0' + d.getMinutes()).slice(-2);
     var today= yyyy + '-' + MM + '-' + dd + 'T' + hh + ':' + mm;
-    $("input[name='worked_at']").val(today);
-    $("select[name='amount_id']").val(1);
-    $("select[name='hardness_id']").val(1);
-    $("textarea[name='memo']").val("");
+    $("input[name='memory_poop[worked_at]']").val(today);
+    $("select[name='memory_poop[amount_id]']").val(1);
+    $("select[name='memory_poop[hardness_id]']").val(1);
+    $("textarea[name='memory_poop[memo]']").val("");
+    $("input[name='memory_poop[poop_image]']").val("");
     $("#mydialog_poop").dialog("open");
   });
 })
 </script>
 
 <div class="dialog" id="mydialog_poop">
-  <%= form_with url: memories_path, class: 'data-form', id: 'data-form-poop', local: true do |f| %>
+  <%= form_with model: MemoryPoop.new, url: poops_path, class: 'data-form', id: 'data-form-poop', local: true do |f| %>
     <div class="data-wrap">
       <div class="data-group">
         <div class="data-text-wrap">
