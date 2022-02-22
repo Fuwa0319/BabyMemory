@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :memories, only: [:index, :new, :create]
   resources :milks, only: [:new, :create]
   resources :pees, only: [:new, :create] 
-  resources :poops, only: [:new, :create] 
+  resources :poops, only: [:new, :create]
+  resources :temperatures, only: [:new, :create] 
 end

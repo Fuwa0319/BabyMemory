@@ -13,7 +13,7 @@ $(function(){
         text: 'OK',
         class:"wkBtnOk",
         click: function(){
-            if ($("select[name='temperature_list_id']").val() == '1') {
+            if ($("select[name='memory_temperature[temperature_list_id]']").val() == '1') {
               alert('体温を選択してください');
               return false;
             } else {
@@ -42,16 +42,17 @@ $(function(){
     var hh = ('0' + d.getHours()).slice(-2);
     var mm = ('0' + d.getMinutes()).slice(-2);
     var today= yyyy + '-' + MM + '-' + dd + 'T' + hh + ':' + mm;
-    $("input[name='worked_at']").val(today);
-    $("select[name='temperature_list_id']").val(1);
-    $("textarea[name='memo']").val("");
+    $("input[name='memory_temperature[worked_at]']").val(today);
+    $("select[name='memory_temperature[temperature_list_id]']").val(1);
+    $("textarea[name='memory_temperature[memo]']").val("");
+    $("input[name='memory_temperature[temperature_image]']").val("");
     $("#mydialog_temperature").dialog("open");
   });
 })
 </script>
 
 <div class="dialog" id="mydialog_temperature">
-  <%= form_with url: memories_path, class: 'data-form', id: 'data-form-temperature', local: true do |f| %>
+  <%= form_with model: MemoryTemperature.new, url: temperatures_path, class: 'data-form', id: 'data-form-temperature', local: true do |f| %>
     <div class="data-wrap">
       <div class="data-group">
         <div class="data-text-wrap">
