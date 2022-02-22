@@ -1,0 +1,95 @@
+<script>
+$(function(){
+  // 画面表示時にダイアログが表示されないよう設定
+  $("#mydialog_pee").dialog({ 
+    title: 'おしっこ',
+    autoOpen: false,
+    modal: true,
+    height: 450,
+    width: 500,
+    open:function(event, ui){ $(".ui-dialog-titlebar-close").hide();},
+    buttons: [        // ボタン名 : 処理 を設定
+      {
+        text: 'OK',
+        class:"wkBtnOk",
+        click: function(){
+            if ($("select[name='memory_pee[amount_id]']").val() == '1') {
+              alert('おしっこの量を選択してください');
+              return false;
+            } else {
+              $("#data-form-pee").submit();
+            }
+        }
+      },
+      {
+        text: 'CANCEL',
+        class:"wkBtnNg",
+        click: function(){
+          // ダイアログを閉じる
+          $(this).dialog("close");
+        }
+      }
+    ]
+  });
+ 
+  // ボタンのクリックイベント
+  $("#btn_action4").click(function(){
+  // ダイアログを表示する
+    var d = new Date();
+    var yyyy = d.getFullYear();
+    var MM = ('0' + (d.getMonth() + 1)).slice(-2);
+    var dd = ('0' + d.getDate()).slice(-2);
+    var hh = ('0' + d.getHours()).slice(-2);
+    var mm = ('0' + d.getMinutes()).slice(-2);
+    var today= yyyy + '-' + MM + '-' + dd + 'T' + hh + ':' + mm;
+    $("input[name='memory_pee[worked_at]']").val(today);
+    $("select[name='memory_pee[amount_id]']").val(1);
+    $("textarea[name='memory_pee[memo]']").val("");
+    $("input[name='memory_pee[pee_image]']").val("");
+    $("#mydialog_pee").dialog("open");
+  });
+})
+</script>
+
+<div class="dialog" id="mydialog_pee">
+  <%= form_with model: MemoryPee.new, url: pees_path, class: 'data-form', id: 'data-form-pee', local: true do |f| %>
+    <div class="data-wrap">
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :worked_at, "イベント時間"%>
+            <span class="indispensable">必須</span>
+          </div>
+        </div>
+        <%= f.datetime_field :worked_at, class: 'date-select' %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :amount_id, "おしっこの量" %>
+            <span class="indispensable">必須</span>
+          </div>
+        </div>
+        <%= f.collection_select(:amount_id, Amount.all, :id, :name, {}, {class:"data-select-box", id:"pee"}) %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :memo %>
+            <span class="data-any">任意</span>
+          </div>
+        </div>
+        <%= f.text_area :memo, class: 'data-memo', maxlength:"255" %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <div class="image-text">写真</div>
+            <span class="data-any">任意</span>
+            <%= f.file_field :pee_image, class: "image-form", id: "pee-image" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

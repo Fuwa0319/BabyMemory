@@ -32,11 +32,22 @@
 
 .main-top {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .form-date {
   margin: 0 20px;
   height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.form-group {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-top: 20px;
 }
 
 .item-icon {
@@ -48,6 +59,12 @@
 .icon-name {
   color: black;
   text-decoration: none;
+}
+
+img:hover {
+  filter: alpha(opacity=70);
+  -moz-opacity: 0.7;
+  opacity: 0.7;
 }
 
 .main-middle {
@@ -73,6 +90,19 @@
 
 .icon {
   margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-tag {
+  height: 15px;
+  font-size: 8px;
+}
+
+.icons {
+  width: 40px;
+  height: 40px;
 }
 
 .comment-area {
@@ -93,6 +123,70 @@
   height: 50px;
   width: 100%;
   padding-left: 10px;
+}
+
+.data-wrap {
+  width: 450px;
+  height: 230px;
+}
+
+.data-group {
+  margin: 10px;
+}
+
+.data-text-wrap {
+  margin: 10px 0;
+}
+
+.data-text-title {
+  display: flex;
+  align-items: center;
+}
+
+.top-date-select {
+  width: 150px;
+  text-align: center;
+}
+
+.date-select {
+  width: 250px;
+  text-align: center;
+}
+
+.data-select-box {
+  width: 250px;
+  text-align: center;
+}
+
+.data-memo {
+  width: 400px;
+  height: 60px;
+}
+
+.data-submit {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.data-red-submit {
+  width: 50px;
+}
+
+.wkBtnOk {
+  width: 100px;
+}
+
+.wkBtnNg {
+  width: 100px;
+}
+
+.image-text {
+  width: 40px;
+}
+
+.image-form {
+  margin-left: 10px;
 }
 
 .form-submit {
@@ -117,4 +211,29 @@
 
 .hidden {
   display: none;
+}
+
+.dialog-close {
+  float: right;
+  border: 1px solid #d3d3d3;
+  background: #e6e6e6;
+  font-weight: normal;
+  color: #555555;
+}
+
+.data-any {
+  background: #ccc;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 4px;
+  margin-left: 8px;
+  width: 37px;
+  text-align: center;
+}
+
+.register-submit {
+  width: 30vw;
+  display: flex;
+  justify-content: center;
 }

@@ -1,4 +1,4 @@
-# BABYMEMORY
+# BABY MEMORY
 
 ## users テーブル
 
@@ -41,33 +41,33 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| height_id          | integer    | null: false                    |
+| height_list_id     | integer    | null: false                    |
 | measured_at        | datetime   | null: false                    |
 | memo               | string     |                                |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to    :user
-- belongs_to    :heigh
+- belongs_to    :heigh_list
 
 ## weighs テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| weigh_id           | integer    | null: false                    |
+| weigh_list_id      | integer    | null: false                    |
 | measured_at        | datetime   | null: false                    |
 | memo               | string     |                                |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to    :user
-- belongs_to    :weigh
+- belongs_to    :weigh_list
 
 ## temperatures テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| temperature_id     | integer    | null: false                    |
+| temperature_list_id| integer    | null: false                    |
 | memo               | string     |                                |
 | user               | references | null: false, foreign_key: true |
 | memory             | references | null: false, foreign_key: true |
@@ -75,13 +75,13 @@
 ### Association
 - belongs_to    :user
 - belongs_to    :memory
-- belongs_to    :temperature
+- belongs_to    :temperature_list
 
 ## milks テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| milk_id            | integer    | null: false                    |
+| milk_list_id       | integer    | null: false                    |
 | memo               | string     |                                |
 | user               | references | null: false, foreign_key: true |
 | memory             | references | null: false, foreign_key: true |
@@ -89,13 +89,13 @@
 ### Association
 - belongs_to    :user
 - belongs_to    :memory
-- belongs_to    :milk
+- belongs_to    :milk_list
 
 ## pees テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| pee_id             | integer    | null: false                    |
+| amount_id          | integer    | null: false                    |
 | memo               | string     |                                |
 | user               | references | null: false, foreign_key: true |
 | memory             | references | null: false, foreign_key: true |
@@ -103,13 +103,14 @@
 ### Association
 - belongs_to    :user
 - belongs_to    :memory
-- belongs_to    :pee
+- belongs_to    :amount
 
 ## poops テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| poop_id            | integer    | null: false                    |
+| amount_id          | integer    | null: false                    |
+| hardness_id        | integer    | null: false                    |
 | memo               | string     |                                |
 | user               | references | null: false, foreign_key: true |
 | memory             | references | null: false, foreign_key: true |
@@ -117,4 +118,5 @@
 ### Association
 - belongs_to    :user
 - belongs_to    :memory
-- belongs_to    :poop
+- belongs_to    :amount
+- belongs_to    :hardness

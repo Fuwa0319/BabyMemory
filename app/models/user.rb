@@ -4,6 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :parent
+  belongs_to :gender
+  has_many   :memories
+  has_many   :temperatures
+  has_many   :milks
+  has_many   :pees
+  has_many   :poops
+
   with_options presence: true do
     validates :baby_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' }
     validates :baby_name_kana, format: { with: /\A[ァ-ヶー]+\z/, message: 'is invalid. Input full-width katakana characters' }

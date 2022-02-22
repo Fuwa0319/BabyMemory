@@ -10,7 +10,82 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_14_092758) do
+ActiveRecord::Schema.define(version: 2022_02_21_084050) do
+
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "comment"
+    t.datetime "worked_at", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_memories_on_user_id"
+  end
+
+  create_table "milks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "milk_list_id", null: false
+    t.string "memo"
+    t.bigint "user_id", null: false
+    t.bigint "memory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["memory_id"], name: "index_milks_on_memory_id"
+    t.index ["user_id"], name: "index_milks_on_user_id"
+  end
+
+  create_table "pees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "amount_id", null: false
+    t.string "memo"
+    t.bigint "user_id", null: false
+    t.bigint "memory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["memory_id"], name: "index_pees_on_memory_id"
+    t.index ["user_id"], name: "index_pees_on_user_id"
+  end
+
+  create_table "poops", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "amount_id", null: false
+    t.integer "hardness_id", null: false
+    t.string "memo"
+    t.bigint "user_id", null: false
+    t.bigint "memory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["memory_id"], name: "index_poops_on_memory_id"
+    t.index ["user_id"], name: "index_poops_on_user_id"
+  end
+
+  create_table "temperatures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "temperature_list_id"
+    t.string "memo"
+    t.bigint "user_id"
+    t.bigint "memory_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["memory_id"], name: "index_temperatures_on_memory_id"
+    t.index ["user_id"], name: "index_temperatures_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,4 +104,14 @@ ActiveRecord::Schema.define(version: 2022_02_14_092758) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "memories", "users"
+  add_foreign_key "milks", "memories"
+  add_foreign_key "milks", "users"
+  add_foreign_key "pees", "memories"
+  add_foreign_key "pees", "users"
+  add_foreign_key "poops", "memories"
+  add_foreign_key "poops", "users"
+  add_foreign_key "temperatures", "memories"
+  add_foreign_key "temperatures", "users"
 end
