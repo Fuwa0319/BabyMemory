@@ -17,7 +17,7 @@ $(function(){
               alert('おしっこの量を選択してください');
               return false;
             } else {
-              $("#data-form").submit();
+              $("#data-form-pee").submit();
             }
         }
       },
@@ -51,7 +51,7 @@ $(function(){
 </script>
 
 <div class="dialog" id="mydialog_pee">
-  <%= form_with url: memories_path, class: 'data-form', id: 'data-form', local: true do |f| %>
+  <%= form_with url: memories_path, class: 'data-form', id: 'data-form-pee', local: true do |f| %>
     <div class="data-wrap">
       <div class="data-group">
         <div class="data-text-wrap">

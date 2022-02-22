@@ -17,7 +17,7 @@ $(function(){
               alert('体温を選択してください');
               return false;
             } else {
-              $("#data-form").submit();
+              $("#data-form-temperature").submit();
             }
         }
       },
@@ -51,7 +51,7 @@ $(function(){
 </script>
 
 <div class="dialog" id="mydialog_temperature">
-  <%= form_with url: memories_path, class: 'data-form', id: 'data-form', local: true do |f| %>
+  <%= form_with url: memories_path, class: 'data-form', id: 'data-form-temperature', local: true do |f| %>
     <div class="data-wrap">
       <div class="data-group">
         <div class="data-text-wrap">

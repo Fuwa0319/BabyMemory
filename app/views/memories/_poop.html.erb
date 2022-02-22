@@ -13,17 +13,17 @@ $(function(){
         text: 'OK',
         class:"wkBtnOk",
         click: function(){
-            if ($("select[name='amount_id']").val() == '1' && $("select[name='hardness_id']").val() == '1') {
+            if ($("select[id='poop']").val() == '1' && $("select[name='hardness_id']").val() == '1') {
               alert('うんちの量と固さを選択してください');
               return false;
-            } else if ($("select[name='amount_id']").val() == '1') {
+            } else if ($("select[id='poop']").val() == '1') {
               alert('うんちの量を選択してください');
               return false;
             } else if ($("select[name='hardness_id']").val() == '1') {
               alert('うんちの硬さを選択してください');
               return false;
             } else {
-              $("#data-form").submit();
+              $("#data-form-poop").submit();
             }
         }
       },
@@ -58,7 +58,7 @@ $(function(){
 </script>
 
 <div class="dialog" id="mydialog_poop">
-  <%= form_with url: memories_path, class: 'data-form', id: 'data-form', local: true do |f| %>
+  <%= form_with url: memories_path, class: 'data-form', id: 'data-form-poop', local: true do |f| %>
     <div class="data-wrap">
       <div class="data-group">
         <div class="data-text-wrap">

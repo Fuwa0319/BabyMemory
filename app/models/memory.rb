@@ -6,6 +6,4 @@ class Memory < ApplicationRecord
   has_many   :pees
   has_many   :poops
 
-  validates :worked_at, presence: true
-
 end
