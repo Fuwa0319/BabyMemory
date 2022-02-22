@@ -52,7 +52,7 @@ $(function(){
 </script>
 
 <div class="dialog" id="mydialog_milk">
-  <%= form_with model: @memory_milk, url: memories_path, class: 'data-form', id: 'data-form-milk', local: true do |f| %>
+  <%= form_with model: MemoryMilk.new, url: milks_path, class: 'data-form', id: 'data-form-milk', local: true do |f| %>
     <div class="data-wrap">
       <div class="data-group">
         <div class="data-text-wrap">
