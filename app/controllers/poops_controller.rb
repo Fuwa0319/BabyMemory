@@ -4,7 +4,7 @@ class PoopsController < ApplicationController
     @memory_poop = MemoryPoop.new(poop_params)
     if @memory_poop.valid?
       @memory_poop.save
-      redirect_to root_path
+      redirect_to request.referer
     end
   end
 

@@ -4,7 +4,7 @@ class TemperaturesController < ApplicationController
     @memory_temperature = MemoryTemperature.new(temperature_params)
     if @memory_temperature.valid?
       @memory_temperature.save
-      redirect_to root_path
+      redirect_to request.referer
     end
 end
 

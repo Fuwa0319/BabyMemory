@@ -4,7 +4,7 @@ class PeesController < ApplicationController
     @memory_pee = MemoryPee.new(pee_params)
     if @memory_pee.valid?
       @memory_pee.save
-      redirect_to root_path
+      redirect_to request.referer
     end
   end
 

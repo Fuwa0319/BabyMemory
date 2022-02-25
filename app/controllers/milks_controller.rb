@@ -4,7 +4,7 @@ class MilksController < ApplicationController
         @memory_milk = MemoryMilk.new(milk_params)
         if @memory_milk.valid?
           @memory_milk.save
-          redirect_to root_path
+          redirect_to request.referer
         end
   end
 
