@@ -8,17 +8,6 @@ $(function(){
 });
 </script>
 
-<script>
-function inputIcon(){
-  let image = $("input[name='png']").val();
-  let hourId = '#' + $("input[name='hour-id']").val();
-  $(hourId).append('<img class="small-event-icons" src="/assets/' + image + '">');
-  $("#png").remove();
-  $("#hour-id").remove();
-};
-
-</script>
-
 <div class="wrapper">
   <div class="side-bar">
     <div class="item">
@@ -82,35 +71,7 @@ function inputIcon(){
       <% if !@memories.empty? %>
         <div class="main-middle">
           <div class="main-middle-left">
-            <% 24.times do |hours| %>
-              <div class="small-lists">
-                <div class="small-hour">
-                  <%= format("%02d", hours) %>
-                </div>
-                <div class="small-icons">
-                  <div class="small-icon" id="<%=format("%02d", hours)%>">
-                  </div>
-                </div>
-              </div>
-            <% end %>
-            <% @memories.each do |memory| %>
-              <% if memory.milk.present? %>
-                <% icon_choice = "baby_honyubin.png" %>
-                <% task_name = "ミルク" %>
-              <% elsif memory.pee.present? %>
-                <% icon_choice = "water_character.png" %>
-                <% task_name = "おしっこ" %>
-              <% elsif memory.poop.present? %>
-                <% icon_choice = "unchi_character.png" %>
-                <% task_name = "うんち" %>
-              <% elsif memory.temperature.present? %>
-                <% icon_choice = "kaden_kisotaionkei.png" %>
-                <% task_name = "体温" %>
-              <% end %>
-              <input value="<%=icon_choice%>" class="png" id="png" name="png" type="hidden">
-              <input value="<%=memory.worked_at.strftime("%H")%>" class="hour-id" id="hour-id" name='hour-id' type="hidden">
-              <script> inputIcon() </script>
-            <% end %>
+            <%= render "small-task" %>
           </div>
 
           <div class="main-middle-center">
