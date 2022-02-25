@@ -1,5 +1,24 @@
 <%= render "shared/header" %>
 
+<script>
+$(function(){
+  $('input[type="date"]').change(function(){
+    $("#top-date-select").submit();
+  });
+});
+</script>
+
+<script>
+function inputIcon(){
+  let image = $("input[name='png']").val();
+  let hourId = '#' + $("input[name='hour-id']").val();
+  $(hourId).append('<img class="small-event-icons" src="/assets/' + image + '">');
+  $("#png").remove();
+  $("#hour-id").remove();
+};
+
+</script>
+
 <div class="wrapper">
   <div class="side-bar">
     <div class="item">
@@ -23,11 +42,11 @@
     <div class="main-area">
       <div class="main-top">
         <div class="form-date">
-            <%= form_with url: memories_path, local: true do |f| %>
-              <div>
-                <%= f.date_field :worked_at, value: Time.now.strftime("%Y-%m-%d"), class: 'top-date-select', name: 'top-date-select' %>
-              </div>
-            <% end %>
+          <%= form_with url: memories_path, method: :get, id: 'top-date-select', local: true do |f| %>
+            <div>
+              <%= f.date_field :search, value: @check_day, class: 'top-date-select', name: 'top-date-select' %>
+            </div>
+          <% end %>
         </div>
         <div class="item-icon">
           <div class="icon">
@@ -60,17 +79,55 @@
           </div>
         </div>
       </div>
-      <div class="main-middle">
-        <div class="main-middle-left">
-          イベント簡易表示
+      <% if !@memories.empty? %>
+        <div class="main-middle">
+          <div class="main-middle-left">
+            <% 24.times do |hours| %>
+              <div class="small-lists">
+                <div class="small-hour">
+                  <%= format("%02d", hours) %>
+                </div>
+                <div class="small-icons">
+                  <div class="small-icon" id="<%=format("%02d", hours)%>">
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% @memories.each do |memory| %>
+              <% if memory.milk.present? %>
+                <% icon_choice = "baby_honyubin.png" %>
+                <% task_name = "ミルク" %>
+              <% elsif memory.pee.present? %>
+                <% icon_choice = "water_character.png" %>
+                <% task_name = "おしっこ" %>
+              <% elsif memory.poop.present? %>
+                <% icon_choice = "unchi_character.png" %>
+                <% task_name = "うんち" %>
+              <% elsif memory.temperature.present? %>
+                <% icon_choice = "kaden_kisotaionkei.png" %>
+                <% task_name = "体温" %>
+              <% end %>
+              <input value="<%=icon_choice%>" class="png" id="png" name="png" type="hidden">
+              <input value="<%=memory.worked_at.strftime("%H")%>" class="hour-id" id="hour-id" name='hour-id' type="hidden">
+              <script> inputIcon() </script>
+            <% end %>
+          </div>
+
+          <div class="main-middle-center">
+            <%= render "task" %>
+          </div>
+
+          <div class="main-middle-right">
+            投稿写真一覧
+          </div>
         </div>
-        <div class="main-middle-center">
-          イベント一覧
+      <% else %>
+        <div class="main-middle">
+          <div class="list-empty">
+            <p>表示できるイベント・写真はありません</p>
+          </div>
         </div>
-        <div class="main-middle-right">
-          投稿写真一覧
-        </div>
-      </div>
+      <% end %>
     </div>
     <div class="comment-area">
       <div class="comment-input">
