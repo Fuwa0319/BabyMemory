@@ -10,7 +10,7 @@ class PoopsController < ApplicationController
 
   private
   def poop_params
-    params.require(:memory_poop).permit(:amount_id, :hardness_id, :memo, :worked_at).merge(user_id: current_user.id)
+    params.require(:memory_poop).permit(:amount_id, :hardness_id, :memo, :worked_at, :poop_image).merge(user_id: current_user.id)
   end
 
 end

@@ -10,7 +10,7 @@ class PeesController < ApplicationController
 
   private
   def pee_params
-    params.require(:memory_pee).permit(:amount_id, :memo, :worked_at).merge(user_id: current_user.id)
+    params.require(:memory_pee).permit(:amount_id, :memo, :worked_at, :pee_image).merge(user_id: current_user.id)
   end
 
 end

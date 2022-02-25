@@ -10,7 +10,7 @@ end
 
 private
 def temperature_params
-params.require(:memory_temperature).permit(:temperature_list_id, :memo, :worked_at).merge(user_id: current_user.id)
+params.require(:memory_temperature).permit(:temperature_list_id, :temperature_image, :memo, :worked_at).merge(user_id: current_user.id)
 end
 
 end
