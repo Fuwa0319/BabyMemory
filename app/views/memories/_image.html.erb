@@ -1,0 +1,29 @@
+<% count = 0 %>
+<% @memories.each do |memory| %>
+  <% if memory.milk.present? %>
+    <% if memory.milk.milk_image.attached? %>
+      <%= image_tag memory.milk.milk_image, class: 'image' %>
+      <% count += 1 %>
+    <% end %>
+  <% elsif memory.pee.present? %>
+    <% if memory.pee.pee_image.attached? %>
+      <%= image_tag memory.pee.pee_image, class: 'image' %>
+      <% count += 1 %>
+    <% end %>
+  <% elsif memory.poop.present? %>
+    <% if memory.poop.poop_image.attached? %>
+      <%= image_tag memory.poop.poop_image, class: 'image' %>
+      <% count += 1 %>
+    <% end %>
+  <% elsif memory.temperature.present? %>
+    <% if memory.temperature.temperature_image.attached? %>
+      <%= image_tag memory.temperature.temperature_image, class: 'image' %>
+      <% count += 1 %>
+    <% end %>
+  <% end %>
+<% end %>
+<% if count == 0 %>
+  <div class="list-empty">
+    <p>表示できる写真はありません</p>
+  </div>
+<% end %>

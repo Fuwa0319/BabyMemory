@@ -77,8 +77,14 @@ $(function(){
           <div class="main-middle-center">
             <%= render "task" %>
           </div>
+
           <div class="main-middle-right">
-            投稿写真一覧
+            <div class="main-middle-right-top">
+              <%= render "image" %>
+            </div>
+            <div class="main-middle-right-bottom">
+              今日の育児日記
+            </div>
           </div>
         </div>
       <% else %>
@@ -97,7 +103,7 @@ $(function(){
           <input type="file" class="hidden">
         </label>
       </div>
-      <input class="form-submit" type="submit" value="完了">
+      <input class="form-submit" type="submit" value="保存">
     </div>
   </div>
 </div>
