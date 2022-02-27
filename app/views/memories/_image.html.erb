@@ -20,6 +20,11 @@
       <%= image_tag memory.temperature.temperature_image, class: 'image' %>
       <% count += 1 %>
     <% end %>
+  <% elsif memory.comment.present? %>
+    <% if memory.comment.comment_image.attached? %>
+      <%= image_tag memory.comment.comment_image, class: 'image' %>
+      <% count += 1 %>
+    <% end %>
   <% end %>
 <% end %>
 <% if count == 0 %>
