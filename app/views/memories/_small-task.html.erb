@@ -33,7 +33,9 @@ function inputIcon(){
     <% icon_choice = "kaden_kisotaionkei.png" %>
     <% task_name = "体温" %>
   <% end %>
-  <input value="<%=icon_choice%>" class="png" id="png" name="png" type="hidden">
-  <input value="<%=memory.worked_at.strftime("%H")%>" class="hour-id" id="hour-id" name='hour-id' type="hidden">
-  <script> inputIcon() </script>
+  <% if !memory.comment.present? %>
+    <input value="<%=icon_choice%>" class="png" id="png" name="png" type="hidden">
+    <input value="<%=memory.worked_at.strftime("%H")%>" class="hour-id" id="hour-id" name='hour-id' type="hidden">
+    <script> inputIcon() </script>
+  <% end %>
 <% end %>
