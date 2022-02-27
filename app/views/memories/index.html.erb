@@ -95,15 +95,17 @@ $(function(){
         </div>
       <% end %>
     </div>
-    <div class="comment-area">
-      <div class="comment-input">
-        <input class="form-comment" placeholder= "育児日記">
-        <label class="form-image">
-          <span class="image-file">写真</span>
-          <input type="file" class="hidden">
-        </label>
-      </div>
-      <input class="form-submit" type="submit" value="保存">
-    </div>
+
+      <%= form_with model: MemoryComment.new, url: comments_path, class: 'comment-area', local: true do |f| %>
+        <div class="comment-input">
+          <%= f.datetime_field :worked_at, value: "#{@check_day}T#{Time.now.strftime("%H:%M:%S")}", type: "hidden" %>
+          <%= f.text_field :comment, class: 'form-comment', placeholder: '育児日記' %>
+          <label class="form-image">
+            <span class="image-file">写真</span>
+            <%= f.file_field :comment_image, class: 'hidden' %>
+          </label>
+        </div>
+        <%= f.submit '保存', class: 'form-submit' %>
+      <% end %>
   </div>
 </div>

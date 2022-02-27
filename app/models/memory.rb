@@ -5,5 +5,8 @@ class Memory < ApplicationRecord
   has_one    :milk
   has_one    :pee
   has_one    :poop
+  has_one    :comment
+
+  validates :worked_at, presence: true
 
 end
