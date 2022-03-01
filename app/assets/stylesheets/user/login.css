@@ -18,3 +18,18 @@
   text-align: center;
   color: red;
 }
+
+.new-registration {
+  margin: 10px 0;
+  color: lightgray;
+  display: flex;
+  justify-content: center;
+}
+
+.new-registration-text {
+  margin-right: 10px;
+}
+
+.new-registration-path {
+  text-decoration: none;
+}

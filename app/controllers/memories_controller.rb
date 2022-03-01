@@ -1,5 +1,5 @@
 class MemoriesController < ApplicationController
-  #before_action :authenticate_user!, only: :index
+  before_action :authenticate_user!, only: :index
 
   def index
     if params[:'top-date-select'].present?

@@ -28,6 +28,12 @@
   <div class='login-btn'>
     <%= f.submit "ログイン" ,class:"login-red-btn" %>
   </div>
+  <div>
+    <div class="new-registration">
+      <p class="new-registration-text">※はじめての方はこちらから</p>
+      <%= link_to "新規登録", new_user_registration_path, class: "new-registration-path" %>
+    </div>
+  </div>
 </div>
 <% end %>
 
