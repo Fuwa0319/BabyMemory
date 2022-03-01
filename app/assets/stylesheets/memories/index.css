@@ -61,7 +61,19 @@
   text-decoration: none;
 }
 
-img:hover {
+.icons:hover {
+  filter: alpha(opacity=70);
+  -moz-opacity: 0.7;
+  opacity: 0.7;
+}
+
+.image-file:hover {
+  filter: alpha(opacity=70);
+  -moz-opacity: 0.7;
+  opacity: 0.7;
+}
+
+.form-submit:hover {
   filter: alpha(opacity=70);
   -moz-opacity: 0.7;
   opacity: 0.7;
@@ -74,18 +86,162 @@ img:hover {
 }
 
 .main-middle-left {
-  width: 80px;
+  width: calc(100vw - 1200px);
+  min-width: 80px;
+  margin: 0 10px;
+  overflow-y: scroll;
+}
+
+.small-lists {
+  display: flex;
+  margin-bottom: -1px;
+}
+
+.small-hour {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
   border: 1px solid black;
+  border-right: none;
+  text-align: center;
+}
+
+.small-icons {
+  display: flex;
+  border: 1px solid black;
+  width: 100%;
+}
+
+.small-event-icons {
+  margin: 0 1.5px;
+  height: 17px;
+  width: 17px;
 }
 
 .main-middle-center {
-  width: 400px;
+  max-height: 100%;
+  width: calc(100vw - 900px);
+  margin: 0 10px;
+  background-color: #fafafa;
+  overflow-y: scroll;
+}
+
+.hour-list {
+  border-top: 1px solid black;
+  text-align: center;
+}
+
+.list-empty {
+  height: 100%;
+  width: 100%;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  padding: 50px 0;
+}
+
+.time-lists {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px dashed lightgray;
+  margin: 0 0 -1px;
+  }
+
+.time-lists-end {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
   border: 1px solid black;
+  border-top: none;
+  margin: 0 0 -1px;
+  }
+
+.time-list {
+  width: 100px;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.time-list-name {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.time-list-icon {
+  margin: 0 10px;
+}
+
+.event-icons {
+  height: 25px;
+  width: 25px;
+}
+
+.time-list-icon-name {
+  width: 80px;
+  margin: 0 10px;
+  text-align: center;
+}
+
+.time-list-amount {
+  width: 80px;
+  margin: 0 10px;
+  text-align: center;
+}
+
+.amounts {
+  text-align: right;
 }
 
 .main-middle-right {
-  width: 400px;
+  width: calc(100vw - 900px);
+  margin: 0 10px;
+  background-color: #fafafa;
+}
+
+.main-middle-right-top {
+  max-height: 50%;
+  width: 100%;
+  background-color: #fafafa;
   border: 1px solid black;
+  margin-bottom: 5px;
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+  margin: 2px;
+}
+
+.main-middle-right-bottom {
+  max-height: 50%;
+  width: 100%;
+  background-color: #fafafa;
+  border: 1px solid black;
+  overflow-y: scroll;
+}
+
+.comment-time {
+  color: #ccc;
+  font-size: 12px;
+}
+
+.comment-text {
+  overflow-wrap:  break-word;
+  font-size: 14px;
+  border-bottom: 1px dashed lightgray;
+  margin: 0 0 -1px;
 }
 
 .icon {
@@ -237,3 +393,5 @@ img:hover {
   display: flex;
   justify-content: center;
 }
+
+

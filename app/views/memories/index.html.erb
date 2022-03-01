@@ -1,5 +1,13 @@
 <%= render "shared/header" %>
 
+<script>
+$(function(){
+  $('input[type="date"]').change(function(){
+    $("#top-date-select").submit();
+  });
+});
+</script>
+
 <div class="wrapper">
   <div class="side-bar">
     <div class="item">
@@ -23,11 +31,11 @@
     <div class="main-area">
       <div class="main-top">
         <div class="form-date">
-            <%= form_with url: memories_path, local: true do |f| %>
-              <div>
-                <%= f.date_field :worked_at, value: Time.now.strftime("%Y-%m-%d"), class: 'top-date-select', name: 'top-date-select' %>
-              </div>
-            <% end %>
+          <%= form_with url: memories_path, method: :get, id: 'top-date-select', local: true do |f| %>
+            <div>
+              <%= f.date_field :search, value: @check_day, class: 'top-date-select', name: 'top-date-select' %>
+            </div>
+          <% end %>
         </div>
         <div class="item-icon">
           <div class="icon">
@@ -60,27 +68,44 @@
           </div>
         </div>
       </div>
-      <div class="main-middle">
-        <div class="main-middle-left">
-          イベント簡易表示
+      <% if !@memories.empty? %>
+        <div class="main-middle">
+          <div class="main-middle-left">
+            <%= render "small-task" %>
+          </div>
+
+          <div class="main-middle-center">
+            <%= render "task" %>
+          </div>
+
+          <div class="main-middle-right">
+            <div class="main-middle-right-top">
+              <%= render "image" %>
+            </div>
+            <div class="main-middle-right-bottom">
+              <%= render "comment" %>
+            </div>
+          </div>
         </div>
-        <div class="main-middle-center">
-          イベント一覧
+      <% else %>
+        <div class="main-middle">
+          <div class="list-empty">
+            <p>表示できるイベント・写真はありません</p>
+          </div>
         </div>
-        <div class="main-middle-right">
-          投稿写真一覧
-        </div>
-      </div>
+      <% end %>
     </div>
-    <div class="comment-area">
-      <div class="comment-input">
-        <input class="form-comment" placeholder= "育児日記">
-        <label class="form-image">
-          <span class="image-file">写真</span>
-          <input type="file" class="hidden">
-        </label>
-      </div>
-      <input class="form-submit" type="submit" value="完了">
-    </div>
+
+      <%= form_with model: MemoryComment.new, url: comments_path, class: 'comment-area', local: true do |f| %>
+        <div class="comment-input">
+          <%= f.datetime_field :worked_at, value: "#{@check_day}T#{Time.now.strftime("%H:%M:%S")}", type: "hidden" %>
+          <%= f.text_field :comment, class: 'form-comment', placeholder: '育児日記' %>
+          <label class="form-image">
+            <span class="image-file">写真</span>
+            <%= f.file_field :comment_image, class: 'hidden' %>
+          </label>
+        </div>
+        <%= f.submit '保存', class: 'form-submit' %>
+      <% end %>
   </div>
 </div>

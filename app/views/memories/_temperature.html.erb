@@ -36,13 +36,14 @@ $(function(){
   $("#btn_action6").click(function(){
   // ダイアログを表示する
     var d = new Date();
-    var yyyy = d.getFullYear();
-    var MM = ('0' + (d.getMonth() + 1)).slice(-2);
-    var dd = ('0' + d.getDate()).slice(-2);
+    var yyyyMMdd = $("#search").val();
+    //var yyyy = d.getFullYear();
+    //var MM = ('0' + (d.getMonth() + 1)).slice(-2);
+    //var dd = ('0' + d.getDate()).slice(-2);
     var hh = ('0' + d.getHours()).slice(-2);
     var mm = ('0' + d.getMinutes()).slice(-2);
-    var today= yyyy + '-' + MM + '-' + dd + 'T' + hh + ':' + mm;
-    $("input[name='memory_temperature[worked_at]']").val(today);
+    var checkday= yyyyMMdd + 'T' + hh + ':' + mm;
+    $("input[name='memory_temperature[worked_at]']").val(checkday);
     $("select[name='memory_temperature[temperature_list_id]']").val(1);
     $("textarea[name='memory_temperature[memo]']").val("");
     $("input[name='memory_temperature[temperature_image]']").val("");

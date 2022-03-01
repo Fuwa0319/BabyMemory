@@ -1,6 +1,6 @@
 class MemoryMilk
   include ActiveModel::Model
-  attr_accessor :milk_list_id , :worked_at, :memo, :user_id
+  attr_accessor :milk_list_id , :worked_at, :memo, :milk_image, :user_id
   
   with_options presence: true do
     validates :worked_at
@@ -12,7 +12,7 @@ class MemoryMilk
 
   def save
     memory = Memory.create(worked_at: worked_at, user_id: user_id)
-    Milk.create(milk_list_id: milk_list_id, memo: memo, user_id: user_id, memory_id: memory.id)
+    Milk.create(milk_list_id: milk_list_id, memo: memo, milk_image: milk_image, user_id: user_id, memory_id: memory.id)
   end
 
 end

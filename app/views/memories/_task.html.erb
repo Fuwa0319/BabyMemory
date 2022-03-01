@@ -1,0 +1,76 @@
+<% old_hour = "HH" %>
+<% max_task_count = @memories.length %>
+<% @memories.each do |memory| %>
+  <% if memory.comment.present? %>
+    <% max_task_count -= 1 %>
+  <% end %>
+<% end %>
+<% @memories.each do |memory| %>
+  <% if memory.milk.present? %>
+    <% icon_choice = "baby_honyubin.png" %>
+    <% list_name = "#{memory.milk.milk_list.name}ml" %>
+    <% task_name = "ミルク" %>
+  <% elsif memory.pee.present? %>
+    <% icon_choice = "water_character.png" %>
+    <% list_name = memory.pee.amount.name %>
+    <% task_name = "おしっこ" %>
+  <% elsif memory.poop.present? %>
+    <% icon_choice = "unchi_character.png" %>
+    <% list_name = memory.poop.amount.name %>
+    <% list_name_other = memory.poop.hardness.name %>
+    <% task_name = "うんち" %>
+  <% elsif memory.temperature.present? %>
+    <% icon_choice = "kaden_kisotaionkei.png" %>
+    <% list_name = "#{memory.temperature.temperature_list.name}℃" %>
+    <% task_name = "体温" %>
+  <% end %>
+
+  <% if !memory.comment.present? %>
+    <% max_task_count -= 1 %>
+    <% if max_task_count != 0 %>
+      <% class_name = "time-lists" %>
+    <% else %>
+      <% class_name = "time-lists-end" %>
+    <% end %>
+    <% chk_hour = memory.worked_at.strftime("%H") %>
+    <% if chk_hour == old_hour %>
+      <div class=<%=class_name%> >
+        <div class="time-list">
+          <%= memory.worked_at.strftime(":%M") %>
+        </div>
+        <div class="time-list-name">
+          <p class="time-list-icon">
+            <%= image_tag "#{icon_choice}", alt: "#{task_name}", class: "event-icons" %>
+          </p>
+          <p class="time-list-icon-name">
+            <%= task_name %>
+          </p>
+          <p class="time-list-amount">
+            <%= list_name %>
+          </p>
+        </div>
+      </div>
+      <% old_hour = chk_hour %>
+    <% else %>
+      <div class="hour-list">
+        <div class=<%=class_name%> >
+          <div class="time-list">
+              <%= memory.worked_at.strftime("%H:%M") %>
+          </div>
+          <div class="time-list-name">
+            <p class="time-list-icon">
+              <%= image_tag "#{icon_choice}", alt: "#{task_name}", class: "event-icons" %>
+            </p>
+            <p class="time-list-icon-name">
+              <%= task_name %>
+            </p>
+            <p class="time-list-amount">
+              <%= list_name %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% old_hour = chk_hour %>
+    <% end %>
+  <% end %>
+<% end %>

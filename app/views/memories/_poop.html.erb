@@ -42,13 +42,14 @@ $(function(){
   $("#btn_action5").click(function(){
   // ダイアログを表示する
     var d = new Date();
-    var yyyy = d.getFullYear();
-    var MM = ('0' + (d.getMonth() + 1)).slice(-2);
-    var dd = ('0' + d.getDate()).slice(-2);
+    var yyyyMMdd = $("#search").val();
+    //var yyyy = d.getFullYear();
+    //var MM = ('0' + (d.getMonth() + 1)).slice(-2);
+    //var dd = ('0' + d.getDate()).slice(-2);
     var hh = ('0' + d.getHours()).slice(-2);
     var mm = ('0' + d.getMinutes()).slice(-2);
-    var today= yyyy + '-' + MM + '-' + dd + 'T' + hh + ':' + mm;
-    $("input[name='memory_poop[worked_at]']").val(today);
+    var checkday= yyyyMMdd + 'T' + hh + ':' + mm;
+    $("input[name='memory_poop[worked_at]']").val(checkday);
     $("select[name='memory_poop[amount_id]']").val(1);
     $("select[name='memory_poop[hardness_id]']").val(1);
     $("textarea[name='memory_poop[memo]']").val("");
