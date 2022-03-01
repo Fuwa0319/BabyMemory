@@ -1,8 +1,9 @@
 <script>
 function inputIcon(){
+  //let image = $("input[name='png']").val();
   let image = $("input[name='png']").val();
   let hourId = '#' + $("input[name='hour-id']").val();
-  $(hourId).append('<img class="small-event-icons" src="/assets/' + image + '">');
+  $(hourId).append('<img class="small-event-icons" src="' + image + '">');
   $("#png").remove();
   $("#hour-id").remove();
 };
@@ -21,16 +22,16 @@ function inputIcon(){
 <% end %>
 <% @memories.each do |memory| %>
   <% if memory.milk.present? %>
-    <% icon_choice = "baby_honyubin.png" %>
+    <% icon_choice = asset_path('baby_honyubin.png') %>
     <% task_name = "ミルク" %>
   <% elsif memory.pee.present? %>
-    <% icon_choice = "water_character.png" %>
+    <% icon_choice = asset_path('water_character.png') %>
     <% task_name = "おしっこ" %>
   <% elsif memory.poop.present? %>
-    <% icon_choice = "unchi_character.png" %>
+    <% icon_choice = asset_path('unchi_character.png') %>
     <% task_name = "うんち" %>
   <% elsif memory.temperature.present? %>
-    <% icon_choice = "kaden_kisotaionkei.png" %>
+    <% icon_choice = asset_path('kaden_kisotaionkei.png') %>
     <% task_name = "体温" %>
   <% end %>
   <% if !memory.comment.present? %>
