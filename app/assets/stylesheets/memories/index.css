@@ -203,13 +203,13 @@
 
 .main-middle-right {
   width: calc(100vw - 900px);
+  max-width: 40%;
   margin: 0 10px;
   background-color: #fafafa;
 }
 
 .main-middle-right-top {
   max-height: 50%;
-  width: 100%;
   background-color: #fafafa;
   border: 1px solid black;
   margin-bottom: 5px;
@@ -226,7 +226,6 @@
 
 .main-middle-right-bottom {
   max-height: 50%;
-  width: 100%;
   background-color: #fafafa;
   border: 1px solid black;
   overflow-y: scroll;
