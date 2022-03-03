@@ -1,122 +1,62 @@
-# BABY MEMORY
+# アプリケーション名
+Baby Memory
 
-## users テーブル
+# アプリケーション概要
+赤ちゃんの日々のイベントを記録することで、育児をサポートすることができる。
 
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| email              | string     | null: false, unique: true      |
-| encrypted_password | string     | null: false                    |
-| baby_name          | string     | null: false                    |
-| birthday           | date       | null: false                    |
-| gender_id          | integer    | null: false                    |
-| parent_id          | integer    | null: false                    |
+# URL
+[https://baby-memory.herokuapp.com/](https://baby-memory.herokuapp.com/)  
 
-### Association
-- has_many   :memories
-- has_many   :heights
-- has_many   :weighs
-- has_many   :temperatures
-- has_many   :milks
-- has_many   :pees
-- has_many   :poops
-- belongs_to :parent
-- belongs_to :gender
+# テスト用アカウント
+・Basic認証パスワード：admin  
+・Basic認証ID：1527  
+・メールアドレス：test@com  
+・パスワード：test00  
 
-## memoriesテーブル
+# 利用方法
+## データ投稿
+1.ページへアクセスするとログインページへ遷移する（アカウントを所持していない場合はリンクから新規登録を行う）  
+2.トップページ（イベント一覧ページ）のアイコンボタンから、イベント情報（日時・イベント情報・メモ・写真）を入力し保存する  
 
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| comment            | text       |                                |
-| worked_at          | datetime   |                                |
-| user               | references | null: false, foreign_key: true |
+# アプリケーションを作成した背景
+子供が産まれ育児を行う中で、ミルク，おむつなどのイベントをノートに記述し管理していた。  
+しかし、ノートでの管理では過去イベントへの振返りに時間がかかる,また夜間の暗い中での記録が困難などの課題を抱えていた。  
+そこでアプリケーションで各イベントを管理することができれば全ての課題を解決できるのではと考え、
+イベント管理アプリケーションを開発することにした。
 
-### Association
-- belongs_to    :user
-- has_many      :temperatures
-- has_many      :milks
-- has_many      :pees
-- has_many      :poos
+# 洗い出した要件
+[要件を定義したシート](https://docs.google.com/spreadsheets/d/1LInvbvp1HPxPBtHgHicBZMkwulHruUFTv0npf6qtR-Y/edit?usp=sharing)  
 
-## heights テーブル
+# 実装した機能についての画像やGIFおよびその説明
+[トップページ](https://gyazo.com/ab75add43848f5965ddc7e2ddaf28882)：トップページの見た目  
+[イベント入力ダイアログ](https://gyazo.com/34b532c8e0f01746ce2201e715ba8075)：イベント入力用のダイアログフォーム  
+[トップページ イベント保存イメージ](https://gyazo.com/6f84e14799075992327f9bf257519b9c)：イベント保存状態の見た目  
 
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| height_list_id     | integer    | null: false                    |
-| measured_at        | datetime   | null: false                    |
-| memo               | string     |                                |
-| user               | references | null: false, foreign_key: true |
+# 実装予定の機能
+1.各イベント編集・削除機能
+2.子供の成長(身長・体重)が分かるグラフ機能
+3.夫婦でのアカウント共有機能
 
-### Association
-- belongs_to    :user
-- belongs_to    :heigh_list
+# データベース設計
+![データベース設計](/public/images/データベース設計.png)  
 
-## weighs テーブル
+# 画面遷移図
+![画面遷移図](/public/images/画面遷移図.png)  
 
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| weigh_list_id      | integer    | null: false                    |
-| measured_at        | datetime   | null: false                    |
-| memo               | string     |                                |
-| user               | references | null: false, foreign_key: true |
+# 開発環境
+・フロントエンド：HTML/CSS/JavaScript  
+・バックエンド：Ruby  
+・テキストエディタ：Visual Studio Code  
 
-### Association
-- belongs_to    :user
-- belongs_to    :weigh_list
 
-## temperatures テーブル
+# ローカルでの動作方法
+以下のコマンドを順に実行。  
+1.git clone https://github.com/Fuwa0319/BabyMemory  
+2.cd BabyMemory  
+3.bundle install  
+4.yarn install  
 
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| temperature_list_id| integer    | null: false                    |
-| memo               | string     |                                |
-| user               | references | null: false, foreign_key: true |
-| memory             | references | null: false, foreign_key: true |
-
-### Association
-- belongs_to    :user
-- belongs_to    :memory
-- belongs_to    :temperature_list
-
-## milks テーブル
-
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| milk_list_id       | integer    | null: false                    |
-| memo               | string     |                                |
-| user               | references | null: false, foreign_key: true |
-| memory             | references | null: false, foreign_key: true |
-
-### Association
-- belongs_to    :user
-- belongs_to    :memory
-- belongs_to    :milk_list
-
-## pees テーブル
-
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| amount_id          | integer    | null: false                    |
-| memo               | string     |                                |
-| user               | references | null: false, foreign_key: true |
-| memory             | references | null: false, foreign_key: true |
-
-### Association
-- belongs_to    :user
-- belongs_to    :memory
-- belongs_to    :amount
-
-## poops テーブル
-
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| amount_id          | integer    | null: false                    |
-| hardness_id        | integer    | null: false                    |
-| memo               | string     |                                |
-| user               | references | null: false, foreign_key: true |
-| memory             | references | null: false, foreign_key: true |
-
-### Association
-- belongs_to    :user
-- belongs_to    :memory
-- belongs_to    :amount
-- belongs_to    :hardness
+# 工夫したポイント
+イベント入力フォームをトップページからのダイアログにすることで、  
+ページ遷移を可能な限り無くしユーザーに対するストレスを軽減できるよう工夫した。  
+また、イベントごとにコメント・写真を任意で付与でき育児日記としても活用することができる。  
