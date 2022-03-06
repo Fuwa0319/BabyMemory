@@ -201,6 +201,10 @@
   text-align: right;
 }
 
+.edit-button {
+  font-size: 14px;
+}
+
 .main-middle-right {
   width: calc(100vw - 900px);
   max-width: 40%;

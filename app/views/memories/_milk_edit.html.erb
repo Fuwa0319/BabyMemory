@@ -1,0 +1,88 @@
+<script>
+$(function(){
+  // 画面表示時にダイアログが表示されないよう設定
+  $("#mydialog_milk-edit").dialog({ 
+    title: 'ミルク',
+    autoOpen: false,
+    modal: true,
+    height: 450,
+    width: 500,
+    open:function(event, ui){ $(".ui-dialog-titlebar-close").hide();},
+    buttons: [        // ボタン名 : 処理 を設定
+      {
+        text: 'OK',
+        class:"wkBtnOk",
+        click: function(){
+            if ($("select[name='memory_milk[milk_list_id]']").val() == '1') {
+              alert('ミルクの量を選択してください');
+              return false;
+            } else {
+              $("#data-form-milk").submit();
+            }
+        }
+      },
+      {
+        text: 'CANCEL',
+        class:"wkBtnNg",
+        click: function(){
+          // ダイアログを閉じる
+          $(this).dialog("close");
+        }
+      }
+    ]
+  });
+ 
+  // ボタンのクリックイベント
+  $('#button-60').click(function(){
+  
+  // ダイアログを表示する
+    var id = $(this).attr("id");
+    console.log(id);
+    $("#mydialog_milk-edit").dialog("open");
+  });
+})
+</script>
+
+<%binding.pry%>
+<div class="dialog" id="mydialog_milk-edit">
+  <%= form_with model: Memory.find(id), url: edit_memory_path(id), method: :get, class: 'data-form', id: 'data-form-milk', local: true do |f| %>
+    <div class="data-wrap">
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :worked_at, "イベント時間"%>
+            <span class="indispensable">必須</span>
+          </div>
+        </div>
+        <%= f.datetime_field :worked_at, class: 'date-select' %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :milk_list_id, "ミルクの量" %>
+            <span class="indispensable">必須</span>
+          </div>
+        </div>
+        <%= f.collection_select(:milk_list_id, MilkList.all, :id, :name, {}, {class:"data-select-box", id:"milk"}) %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :memo %>
+            <span class="data-any">任意</span>
+          </div>
+        </div>
+        <%= f.text_area :memo, class: 'data-memo', maxlength:"255" %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <div class="image-text">写真</div>
+            <span class="data-any">任意</span>
+            <%= f.file_field :milk_image, class: "image-form", id: "milk-image" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
