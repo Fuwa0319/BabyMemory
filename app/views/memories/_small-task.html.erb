@@ -33,6 +33,12 @@ function inputIcon(){
   <% elsif memory.temperature.present? %>
     <% icon_choice = asset_path('kaden_kisotaionkei.png') %>
     <% task_name = "体温" %>
+  <% elsif memory.sleep.present? %>
+    <% icon_choice = asset_path('baby_boy11_sleep.png') %>
+    <% task_name = "寝る" %>
+  <% elsif memory.get_up.present? %>
+    <% icon_choice = asset_path('baby_boy05_idea.png') %>
+    <% task_name = "起きる" %>
   <% end %>
   <% if !memory.comment.present? %>
     <input value="<%=icon_choice%>" class="png" id="png" name="png" type="hidden">
