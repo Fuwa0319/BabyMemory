@@ -20,6 +20,16 @@
       <%= image_tag memory.temperature.temperature_image, class: 'image' %>
       <% count += 1 %>
     <% end %>
+  <% elsif memory.sleep.present? %>
+    <% if memory.sleep.sleep_image.attached? %>
+      <%= image_tag memory.sleep.sleep_image, class: 'image' %>
+      <% count += 1 %>
+    <% end %>
+  <% elsif memory.get_up.present? %>
+    <% if memory.get_up.get_up_image.attached? %>
+      <%= image_tag memory.get_up.get_up_image, class: 'image' %>
+      <% count += 1 %>
+    <% end %>
   <% elsif memory.comment.present? %>
     <% if memory.comment.comment_image.attached? %>
       <%= image_tag memory.comment.comment_image, class: 'image' %>
