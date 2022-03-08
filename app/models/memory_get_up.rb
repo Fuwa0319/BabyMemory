@@ -1,6 +1,6 @@
 class MemoryGetUp
   include ActiveModel::Model
-  attr_accessor :memo , :worked_at, :get_up__image, :user_id
+  attr_accessor :memo , :worked_at, :get_up_image, :user_id
   
   with_options presence: true do
     validates :worked_at

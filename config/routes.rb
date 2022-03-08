@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :poops, only: [:new, :create]
   resources :temperatures, only: [:new, :create] 
   resources :sleeps, only: [:new, :create] 
+  resources :get_ups, only: [:new, :create] 
   resources :comments, only: [:new, :create] 
 end
