@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_27_125536) do
+ActiveRecord::Schema.define(version: 2022_03_08_163807) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 2022_02_27_125536) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["memory_id"], name: "index_comments_on_memory_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "get_ups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "memo"
+    t.bigint "user_id", null: false
+    t.bigint "memory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["memory_id"], name: "index_get_ups_on_memory_id"
+    t.index ["user_id"], name: "index_get_ups_on_user_id"
   end
 
   create_table "memories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -85,6 +95,16 @@ ActiveRecord::Schema.define(version: 2022_02_27_125536) do
     t.index ["user_id"], name: "index_poops_on_user_id"
   end
 
+  create_table "sleeps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "memo"
+    t.bigint "user_id", null: false
+    t.bigint "memory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["memory_id"], name: "index_sleeps_on_memory_id"
+    t.index ["user_id"], name: "index_sleeps_on_user_id"
+  end
+
   create_table "temperatures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "temperature_list_id"
     t.string "memo"
@@ -116,6 +136,8 @@ ActiveRecord::Schema.define(version: 2022_02_27_125536) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "memories"
   add_foreign_key "comments", "users"
+  add_foreign_key "get_ups", "memories"
+  add_foreign_key "get_ups", "users"
   add_foreign_key "memories", "users"
   add_foreign_key "milks", "memories"
   add_foreign_key "milks", "users"
@@ -123,6 +145,8 @@ ActiveRecord::Schema.define(version: 2022_02_27_125536) do
   add_foreign_key "pees", "users"
   add_foreign_key "poops", "memories"
   add_foreign_key "poops", "users"
+  add_foreign_key "sleeps", "memories"
+  add_foreign_key "sleeps", "users"
   add_foreign_key "temperatures", "memories"
   add_foreign_key "temperatures", "users"
 end

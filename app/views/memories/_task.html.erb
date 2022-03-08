@@ -23,6 +23,14 @@
     <% icon_choice = "kaden_kisotaionkei.png" %>
     <% list_name = "#{memory.temperature.temperature_list.name}℃" %>
     <% task_name = "体温" %>
+  <% elsif memory.sleep.present? %>
+    <% icon_choice = "baby_boy11_sleep.png" %>
+    <% list_name = "" %>
+    <% task_name = "寝る" %>
+  <% elsif memory.get_up.present? %>
+    <% icon_choice = "baby_boy05_idea.png" %>
+    <% list_name = "" %>
+    <% task_name = "起きる" %>
   <% end %>
 
   <% if !memory.comment.present? %>

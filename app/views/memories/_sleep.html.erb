@@ -1,0 +1,81 @@
+<script>
+$(function(){
+  // 画面表示時にダイアログが表示されないよう設定
+  $("#mydialog_sleep").dialog({ 
+    title: '寝る',
+    autoOpen: false,
+    modal: true,
+    height: 400,
+    width: 500,
+    open:function(event, ui){ $(".ui-dialog-titlebar-close").hide();},
+    buttons: [        // ボタン名 : 処理 を設定
+      {
+        text: 'OK',
+        class:"wkBtnOk",
+        click: function(){
+          $("#data-form-sleep").submit();
+        }
+      },
+      {
+        text: 'CANCEL',
+        class:"wkBtnNg",
+        click: function(){
+          // ダイアログを閉じる
+          $(this).dialog("close");
+        }
+      }
+    ]
+  });
+ 
+  // ボタンのクリックイベント
+  $("#btn_action2").click(function(){
+  // ダイアログを表示する
+    var d = new Date();
+    var yyyyMMdd = $("#search").val();
+    //var yyyy = d.getFullYear();
+    //var MM = ('0' + (d.getMonth() + 1)).slice(-2);
+    //var dd = ('0' + d.getDate()).slice(-2);
+    var hh = ('0' + d.getHours()).slice(-2);
+    var mm = ('0' + d.getMinutes()).slice(-2);
+    var checkday= yyyyMMdd + 'T' + hh + ':' + mm;
+    $("input[name='memory_sleep[worked_at]']").val(checkday);
+    $("textarea[name='memory_sleep[memo]']").val("");
+    $("input[name='memory_sleep[sleep_image]']").val("");
+    $("#mydialog_sleep").dialog("open");
+  });
+})
+</script>
+
+<div class="dialog" id="mydialog_sleep">
+  <%= form_with model: MemorySleep.new, url: sleeps_path, class: 'data-form', id: 'data-form-sleep', local: true do |f| %>
+    <div class="data-wrap">
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :worked_at, "イベント時間"%>
+            <span class="indispensable">必須</span>
+          </div>
+        </div>
+        <%= f.datetime_field :worked_at, class: 'date-select' %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <%= f.label :memo %>
+            <span class="data-any">任意</span>
+          </div>
+        </div>
+        <%= f.text_area :memo, class: 'data-memo', maxlength:"255" %>
+      </div>
+      <div class="data-group">
+        <div class="data-text-wrap">
+          <div class="data-text-title">
+            <div class="image-text">写真</div>
+            <span class="data-any">任意</span>
+            <%= f.file_field :sleep_image, class: "image-form", id: "sleep-image" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
