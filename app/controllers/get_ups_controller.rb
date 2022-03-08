@@ -1,0 +1,2 @@
+class GetUpsController < ApplicationController
+end
