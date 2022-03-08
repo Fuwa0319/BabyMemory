@@ -6,6 +6,8 @@ class Memory < ApplicationRecord
   has_one    :pee
   has_one    :poop
   has_one    :comment
+  has_one    :sleep
+  has_one    :get_up
 
   validates :worked_at, presence: true
 
