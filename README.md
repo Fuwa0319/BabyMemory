@@ -49,9 +49,9 @@ Baby Memory
 # 開発環境
 ・フロントエンド：HTML/CSS/JavaScript  
 ・バックエンド：Ruby/Ruby on Rails  
-・インフラ：Heroku/AWS S3
+・インフラ：Heroku/AWS S3  
 ・テキストエディタ：Visual Studio Code  
-・タスク管理：GitHub
+・タスク管理：GitHub  
 
 # ローカルでの動作方法
 以下のコマンドを順に実行。  
